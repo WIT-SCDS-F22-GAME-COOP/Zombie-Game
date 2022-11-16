@@ -29,3 +29,11 @@ func turn(dir,right):
 		elif dir == 0:
 			dir = 3
 	return dir
+
+
+# Converts a position value to a tile
+func get_tile(a):
+	var b = Vector2.ZERO
+	b.x = (a.x - 32) / 64
+	b.y = (a.y - 32) / 64
+	return b
