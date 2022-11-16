@@ -7,7 +7,6 @@ var level = "res://Levels/0.png"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Label.modulate = Color(1,0,0)
 	assign_ids()
 	draw_map(level)
 
