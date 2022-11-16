@@ -176,3 +176,13 @@ position = Vector2( 160, 96 )
 
 [node name="Green" parent="." instance=ExtResource( 4 )]
 position = Vector2( 96, 96 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 1329.0
+margin_top = 1023.0
+margin_right = 1440.0
+margin_bottom = 1043.0
+rect_scale = Vector2( 3, 3 )
+text = "BACK TO MENU"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

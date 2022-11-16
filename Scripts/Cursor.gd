@@ -4,7 +4,7 @@ var tile_position = Vector2.ZERO
 var direction = 0
 
 func _ready():
-	global_position = Vector2(64+32,64+32)
+	global_position = Vector2(64*9+32,64*9+32)
 
 
 func _process(delta):

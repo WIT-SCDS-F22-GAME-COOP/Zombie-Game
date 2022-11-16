@@ -1,7 +1,7 @@
 extends Node
 
 # Change as levels are added
-var last_level = 1
+var last_level = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

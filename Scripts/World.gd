@@ -5,11 +5,19 @@ extends Node
 func _ready():
 	assign_ids()
 	draw_map(Global.level)
+	level_specific()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$Label.text = str($Cursor.tile_position)
+
+
+func level_specific():
+	match(Global.level_int):
+		2:
+			$Red.position = Vector2(6*64+32,16*64+32)
+			$Green.position = Vector2(7*64+32,16*64+32)
 
 
 func assign_ids():
@@ -46,3 +54,7 @@ func draw_map(x):
 				$TileMap.set_cell(index,index2,2,false,false,false,Vector2(0,0))
 			else:
 				print(str(pixel) + " at " + str(Vector2(index,index2)))
+
+# Temporary button
+func _on_Button_pressed():
+	Global.return_menu()

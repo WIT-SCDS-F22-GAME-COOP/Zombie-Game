@@ -8,6 +8,7 @@ var level = "res://Levels/0.png"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(level)
 	pass # Replace with function body.
 
 
