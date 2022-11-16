@@ -1,5 +1,6 @@
 extends Node
 
+var current_button = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,6 +12,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$Label.text = str($Cursor.tile_position)
+	
+	if current_button == 1 && Input.is_action_just_pressed("select"):
+		_on_Button_pressed()
 
 
 func level_specific():
@@ -58,3 +62,9 @@ func draw_map(x):
 # Temporary button
 func _on_Button_pressed():
 	Global.return_menu()
+
+
+func _Back_Button_Entered(area):
+	current_button = 1
+func _Back_Button_Left(area):
+	current_button = 0
