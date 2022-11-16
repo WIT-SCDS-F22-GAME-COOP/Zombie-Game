@@ -11,12 +11,13 @@ config_version=4
 [application]
 
 config/name="Zombie Game"
-run/main_scene="res://TSCN/World.tscn"
+run/main_scene="res://TSCN/Menu.tscn"
 config/icon="res://Graphics/icon.png"
 
 [autoload]
 
 Tiles="*res://Scripts/Tile_Functions.gd"
+Global="*res://Scripts/Global.gd"
 
 [display]
 

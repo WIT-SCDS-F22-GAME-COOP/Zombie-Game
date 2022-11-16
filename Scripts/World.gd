@@ -1,14 +1,10 @@
 extends Node
 
-# Edit to the corresponding image from menu
-# Leave 0 as default to avoid issues
-var level = "res://Levels/0.png"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	assign_ids()
-	draw_map(level)
+	draw_map(Global.level)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,3 +44,5 @@ func draw_map(x):
 			# Red
 			elif (str(pixel) == "1,0,0,1"):
 				$TileMap.set_cell(index,index2,2,false,false,false,Vector2(0,0))
+			else:
+				print(str(pixel) + " at " + str(Vector2(index,index2)))
