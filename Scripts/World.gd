@@ -22,10 +22,12 @@ func _process(delta):
 		if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1):
 			selected_tile_pos = $Cursor.tile_position
 			selected_tile = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
+			$SelectedCursor.position = $Cursor.position
 		elif (selected_tile != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1):
 			$ActionTile.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile, false,false,false, Vector2(0,0))
 			$ActionTile.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
 			selected_tile = -1
+			$SelectedCursor.position = Vector2(-256,0)
 		
 			
 
