@@ -18,7 +18,7 @@ func _process(delta):
 		_on_Button_pressed()
 	elif current_button == 2 && Input.is_action_just_pressed("select"):
 		_on_Button2_pressed()
-
+		
 func _on_Button_pressed():
 	Global.menu = false
 	get_tree().change_scene("res://TSCN/World.tscn")

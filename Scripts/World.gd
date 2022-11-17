@@ -1,6 +1,8 @@
 extends Node
 
 var current_button = 0
+var selected_tile_pos = Vector2.ZERO
+var selected_tile = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +17,17 @@ func _process(delta):
 	
 	if current_button == 1 && Input.is_action_just_pressed("select"):
 		_on_Button_pressed()
+		
+	if Input.is_action_just_pressed("select"):
+		if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1):
+			selected_tile_pos = $Cursor.tile_position
+			selected_tile = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
+		elif (selected_tile != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1):
+			$ActionTile.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile, false,false,false, Vector2(0,0))
+			$ActionTile.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
+			selected_tile = -1
+		
+			
 
 
 func level_specific():
