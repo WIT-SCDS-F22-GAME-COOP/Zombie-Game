@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Graphics/placeholder_tiles.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/World.gd" type="Script" id=2]
@@ -223,6 +223,14 @@ animations = [ {
 "speed": 3.0
 } ]
 
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 9
+border_width_top = 9
+border_width_right = 9
+border_width_bottom = 9
+border_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+
 [node name="Node" type="Node"]
 script = ExtResource( 2 )
 
@@ -291,6 +299,31 @@ modulate = Color( 0.0470588, 0.662745, 0.490196, 1 )
 position = Vector2( -256, 0 )
 frames = SubResource( 8 )
 playing = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 1217.0
+margin_top = 789.0
+margin_right = 1666.0
+margin_bottom = 1007.0
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+margin_right = 449.0
+margin_bottom = 218.0
+custom_styles/panel = SubResource( 9 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 198.0
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+margin_right = 409.0
+margin_bottom = 178.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+autowrap = true
+clip_text = true
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="area_entered" from="Button/Area2D" to="." method="_Back_Button_Entered"]
