@@ -37,6 +37,9 @@ func level_specific():
 		2:
 			$Red.position = Vector2(6*64+32,16*64+32)
 			$Green.position = Vector2(7*64+32,16*64+32)
+		3:
+			$Red.position = Vector2(16*64+32,16*64+32)
+			$Green.position = Vector2(15*64+32,16*64+32)
 
 
 func assign_ids():
@@ -79,6 +82,9 @@ func draw_map(x):
 			# Red
 			elif (str(pixel) == "1,0,0,1"):
 				$TileMap.set_cell(index,index2,2,false,false,false,Vector2(0,0))
+			# Blue
+			elif (str(pixel) == "0,0,1,1"):
+				$TileMap.set_cell(index,index2,8,false,false,false,Vector2(0,0))
 			else:
 				print(str(pixel) + " at " + str(Vector2(index,index2)))
 

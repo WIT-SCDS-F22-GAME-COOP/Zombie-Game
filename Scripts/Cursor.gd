@@ -4,7 +4,10 @@ var tile_position = Vector2.ZERO
 var direction = 0
 
 func _ready():
-	global_position = Vector2(64*9+32,64*9+32)
+	if Global.menu:
+		global_position = Vector2(64*9+32,64*9+32)
+	else:
+		global_position = Vector2(64*22+32,64*11+32)
 
 
 func _process(delta):

@@ -1,7 +1,7 @@
 extends Node
 
 # Change as levels are added
-var last_level = 2
+var last_level = 3
 
 var current_button = 0
 
