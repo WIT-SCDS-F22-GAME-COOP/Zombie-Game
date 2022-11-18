@@ -29,7 +29,7 @@ func _process(delta):
 			selected_tile = -1
 			$SelectedCursor.position = Vector2(-256,0)
 		
-			
+	pass_tile()
 
 
 func level_specific():
@@ -44,6 +44,12 @@ func assign_ids():
 	$Green.id = 2
 	$Red.modulate = Color(1,0,0)
 	$Green.modulate = Color(0,1,0)
+
+func pass_tile():
+	var red = Tiles.get_tile($Red.position)
+	var green = Tiles.get_tile($Green.position)
+	$Red.current_tile = $ActionTile.get_cell(red.x,red.y)
+	$Green.current_tile = $ActionTile.get_cell(green.x,green.y)
 
 # Function to import and draw maps from images
 # Storing a map as an 18*18 image file makes it easy to design and keep many

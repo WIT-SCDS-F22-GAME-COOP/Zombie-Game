@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
-var direction = -1
+var direction = 0
 var id = 0
+var current_tile = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,4 +11,31 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	# Do not leave active after game timer implemented
+	# Mapped to R button, walks
+	if Input.is_action_just_pressed("debug_input"):
+		use_tile()
+		walk()
+	# Mapped to T button, turns right
+	if Input.is_action_just_pressed("debug_input2"):
+		direction = Tiles.turn(direction, true)
+		print(current_tile)
+
+# Current facing direction. 0 Up, 1 right, 2 down, 3 left
+func walk():
+	match(direction):
+		0:
+			global_position.y = global_position.y - 64
+		1:
+			global_position.x = global_position.x + 64
+		2:
+			global_position.y = global_position.y + 64
+		3:
+			global_position.x = global_position.x - 64
+
+func use_tile():
+	match(current_tile):
+		0:
+			direction = Tiles.turn(direction,false)
+		1:
+			direction = Tiles.turn(direction,true)
