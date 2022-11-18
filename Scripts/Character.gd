@@ -1,16 +1,19 @@
 extends KinematicBody2D
 
 var direction = 0
+var initial_direction = 0
 var move_direction = -1
 
 var id = 0
 
 var starting_pos = Vector2.ZERO
 var current_tile = -1
+var current_floor = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	direction = initial_direction
+	$Timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,20 +30,32 @@ func _process(delta):
 	# Mapped to T button, turns right
 	if Input.is_action_just_pressed("debug_input2"):
 		direction = Tiles.turn(direction, true)
-		print(current_tile)
+		# print(current_tile)
+	
+	# Update with any new level attributes added later
+	if Input.is_action_just_pressed("reset_level") && starting_pos != Vector2(0,0):
+		Global.points = 0
+		global_position = starting_pos
+		direction = initial_direction
+		move_direction = -1
 
 
 # Current facing direction. 0 Up, 1 right, 2 down, 3 left
 func walk(x):
-	match(x):
-		0:
-			global_position.y = global_position.y - 64
-		1:
-			global_position.x = global_position.x + 64
-		2:
-			global_position.y = global_position.y + 64
-		3:
-			global_position.x = global_position.x - 64
+	if (current_floor - 1 != id):
+		match(x):
+			0:
+				global_position.y = global_position.y - 64
+			1:
+				global_position.x = global_position.x + 64
+			2:
+				global_position.y = global_position.y + 64
+			3:
+				global_position.x = global_position.x - 64
+	else:
+		global_position = Vector2(-128,-64)
+		Global.points = Global.points + 1
+		print(Global.points)
 
 
 func use_tile():

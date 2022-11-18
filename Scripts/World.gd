@@ -50,6 +50,8 @@ func pass_tile():
 	var green = Tiles.get_tile($Green.position)
 	$Red.current_tile = $ActionTile.get_cell(red.x,red.y)
 	$Green.current_tile = $ActionTile.get_cell(green.x,green.y)
+	$Red.current_floor = $TileMap.get_cell(red.x,red.y)
+	$Green.current_floor = $TileMap.get_cell(green.x,green.y)
 
 # Function to import and draw maps from images
 # Storing a map as an 18*18 image file makes it easy to design and keep many
