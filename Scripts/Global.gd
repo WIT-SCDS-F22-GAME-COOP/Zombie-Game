@@ -25,4 +25,5 @@ func change_level(x):
 
 func return_menu():
 	menu = true
+	points = 0
 	get_tree().change_scene("res://TSCN/Menu.tscn")
