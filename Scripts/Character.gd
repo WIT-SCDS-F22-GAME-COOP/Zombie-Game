@@ -8,7 +8,7 @@ var id = 0
 
 var starting_pos = Vector2.ZERO
 var current_tile = -1
-var current_floor = -1
+var current_floor = [-1,-1,-1,-1,-1,-1,-1,-1,-1,]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,8 +23,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("debug_input"):
 		use_tile()
 		if (move_direction == -1):
-			walk(direction)
+			direction = walk(direction)
 		else:
+			# direction = walk(move_direction)
 			walk(move_direction)
 			move_direction = -1
 	# Mapped to T button, turns right
@@ -32,7 +33,7 @@ func _process(delta):
 		direction = Tiles.turn(direction, true)
 		# print(current_tile)
 	
-	# Update with any new level attributes added later
+	# Update with any new level attributes added
 	if Input.is_action_just_pressed("reset_level") && starting_pos != Vector2(0,0):
 		Global.points = 0
 		global_position = starting_pos
@@ -42,7 +43,8 @@ func _process(delta):
 
 # Current facing direction. 0 Up, 1 right, 2 down, 3 left
 func walk(x):
-	if (current_floor - 1 != id):
+	if (current_floor[4] - 1 != id):
+		x = wall_check(x)
 		match(x):
 			0:
 				global_position.y = global_position.y - 64
@@ -56,6 +58,24 @@ func walk(x):
 		global_position = Vector2(-128,-64)
 		Global.points = Global.points + 1
 		print(Global.points)
+	return x
+
+
+func wall_check(x):
+	match(x):
+		0:
+			if (current_floor[1] == 0):
+				x = Tiles.flip(x)
+		1:
+			if (current_floor[5] == 0):
+				x = Tiles.flip(x)
+		2:
+			if (current_floor[7] == 0):
+				x = Tiles.flip(x)
+		3:
+			if (current_floor[3] == 0):
+				x = Tiles.flip(x)
+	return x
 
 
 func use_tile():

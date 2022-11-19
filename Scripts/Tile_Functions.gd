@@ -30,6 +30,17 @@ func turn(dir,right):
 			dir = 3
 	return dir
 
+func flip(dir):
+	match(dir):
+		0:
+			dir = 2
+		1:
+			dir = 3
+		2:
+			dir = 0
+		3:
+			dir = 1
+	return dir
 
 # Converts a position value to a tile
 func get_tile(a):
