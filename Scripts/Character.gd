@@ -12,7 +12,6 @@ var current_floor = [-1,-1,-1,-1,-1,-1,-1,-1,-1,]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	direction = initial_direction
 	$Timer.start()
 
 
@@ -97,3 +96,4 @@ func use_tile():
 
 func _on_Timer_timeout():
 	starting_pos = global_position
+	direction = initial_direction

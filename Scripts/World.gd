@@ -43,9 +43,12 @@ func level_specific():
 		3:
 			$Red.position = Vector2(2*64+32,8*64+32)
 			$Green.position = Vector2(1*64+32,8*64+32)
-			$Red.direction = 1
 			$Red.initial_direction = 1
-			$Green.direction = 1
+			$Green.initial_direction = 1
+		4:
+			$Red.position = Vector2(2*64+32,6*64+32)
+			$Green.position = Vector2(1*64+32,6*64+32)
+			$Red.initial_direction = 1
 			$Green.initial_direction = 1
 
 
