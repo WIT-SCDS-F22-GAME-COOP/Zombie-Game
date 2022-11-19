@@ -26,7 +26,7 @@ func _on_Button_pressed():
 
 func _on_Button2_pressed():
 	if (Global.level_int == last_level):
-		Global.change_level(0)
+		Global.change_level(1)
 	else:
 		var x = Global.level_int + 1
 		Global.change_level(x)

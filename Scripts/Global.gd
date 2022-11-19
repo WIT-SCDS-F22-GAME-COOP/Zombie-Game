@@ -2,16 +2,15 @@ extends Node
 
 
 var menu = true
-var level_int = 0
-var level = "res://Levels/0.png"
+var level_int = 1
+var level
 
 var points = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(level)
-	pass # Replace with function body.
+	change_level(level_int)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

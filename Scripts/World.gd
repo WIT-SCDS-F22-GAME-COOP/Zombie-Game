@@ -34,12 +34,19 @@ func _process(delta):
 
 func level_specific():
 	match(Global.level_int):
-		2:
+		1:
 			$Red.position = Vector2(6*64+32,16*64+32)
 			$Green.position = Vector2(7*64+32,16*64+32)
-		3:
+		2:
 			$Red.position = Vector2(16*64+32,16*64+32)
 			$Green.position = Vector2(15*64+32,16*64+32)
+		3:
+			$Red.position = Vector2(2*64+32,8*64+32)
+			$Green.position = Vector2(1*64+32,8*64+32)
+			$Red.direction = 1
+			$Red.initial_direction = 1
+			$Green.direction = 1
+			$Green.initial_direction = 1
 
 
 func assign_ids():
