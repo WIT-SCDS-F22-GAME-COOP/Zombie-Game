@@ -20,7 +20,7 @@ func _process(delta):
 	# Do not leave active after game timer implemented
 	# Mapped to R button, walks
 	if Input.is_action_just_pressed("debug_input"):
-		use_tile()
+		use_tile(current_tile)
 		if (move_direction == -1):
 			direction = walk(direction)
 		else:
@@ -77,8 +77,31 @@ func wall_check(x):
 	return x
 
 
-func use_tile():
-	match(current_tile):
+func use_tile(x):
+	if x == -1:
+		x = 99
+	match(x):
+		0:
+			direction = Tiles.turn(direction,false)
+		1:
+			direction = Tiles.turn(direction,true)
+		# UDLR
+		2:
+			move_direction = 0
+		3:
+			move_direction = 2
+		4:
+			move_direction = 3
+		5:
+			move_direction = 1
+		99:
+			use_permanent_tile()
+
+
+# TurnL 5, TurnR 6, Up 7, Down 8, Left 9, Right 10
+func use_permanent_tile():
+	var x = current_floor[4] - 5
+	match(x):
 		0:
 			direction = Tiles.turn(direction,false)
 		1:

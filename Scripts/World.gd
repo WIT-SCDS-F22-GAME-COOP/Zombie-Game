@@ -50,6 +50,15 @@ func level_specific():
 			$Green.position = Vector2(1*64+32,6*64+32)
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
+		5:
+			$Red.position = Vector2(1*64+32,2*64+32)
+			$Green.position = Vector2(14*64+32,2*64+32)
+			$Red.initial_direction = 1
+			$Green.initial_direction = 3
+			$TileMap.set_cell(7,1,10,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(8,1,6,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(16,1,8,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(16,2,6,false,false,false,Vector2(0,0))
 
 
 func assign_ids():
@@ -109,7 +118,7 @@ func draw_map(x):
 				$TileMap.set_cell(index,index2,2,false,false,false,Vector2(0,0))
 			# Blue
 			elif (str(pixel) == "0,0,1,1"):
-				$TileMap.set_cell(index,index2,8,false,false,false,Vector2(0,0))
+				$TileMap.set_cell(index,index2,4,false,false,false,Vector2(0,0))
 			else:
 				print(str(pixel) + " at " + str(Vector2(index,index2)))
 
