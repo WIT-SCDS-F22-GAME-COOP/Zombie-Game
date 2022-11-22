@@ -20,17 +20,10 @@ func _process(delta):
 	# Do not leave active after game timer implemented
 	# Mapped to R button, walks
 	if Input.is_action_just_pressed("debug_input"):
-		use_tile(current_tile)
-		if (move_direction == -1):
-			direction = walk(direction)
-		else:
-			# direction = walk(move_direction)
-			walk(move_direction)
-			move_direction = -1
+		tick()
 	# Mapped to T button, turns right
-	if Input.is_action_just_pressed("debug_input2"):
-		direction = Tiles.turn(direction, true)
-		# print(current_tile)
+#	if Input.is_action_just_pressed("debug_input2"):
+#		direction = Tiles.turn(direction, true)
 	
 	# Update with any new level attributes added
 	if Input.is_action_just_pressed("reset_level") && starting_pos != Vector2(0,0):
@@ -39,6 +32,14 @@ func _process(delta):
 		direction = initial_direction
 		move_direction = -1
 
+func tick():
+	use_tile(current_tile)
+	if (move_direction == -1):
+		direction = walk(direction)
+	else:
+		# direction = walk(move_direction)
+		walk(move_direction)
+		move_direction = -1
 
 # Current facing direction. 0 Up, 1 right, 2 down, 3 left
 func walk(x):

@@ -19,17 +19,32 @@ func _process(delta):
 		_on_Button_pressed()
 		
 	if Input.is_action_just_pressed("select"):
-		if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1):
+		if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1 && initial_pos_check()):
 			selected_tile_pos = $Cursor.tile_position
 			selected_tile = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
 			$SelectedCursor.position = $Cursor.position
-		elif (selected_tile != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1):
+		elif (selected_tile != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1 && initial_pos_check()):
 			$ActionTile.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile, false,false,false, Vector2(0,0))
 			$ActionTile.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
 			selected_tile = -1
 			$SelectedCursor.position = Vector2(-256,0)
 		
 	pass_tile()
+	
+	if (Global.points >= 2):
+		$WinGraphic.visible = true
+	else:
+		$WinGraphic.visible = false
+
+
+func initial_pos_check():
+	if $Red.position == $Red.starting_pos && $Red.direction == $Red.initial_direction:
+		if $Green.position == $Green.starting_pos && $Green.direction == $Green.initial_direction:
+			return true
+		else:
+			return false
+	else:
+		return false
 
 
 func level_specific():
@@ -38,19 +53,22 @@ func level_specific():
 			$Red.position = Vector2(6*64+32,16*64+32)
 			$Green.position = Vector2(7*64+32,16*64+32)
 		2:
+			$Red.position = Vector2(6*64+32,16*64+32)
+			$Green.position = Vector2(7*64+32,16*64+32)
+		3:
 			$Red.position = Vector2(16*64+32,16*64+32)
 			$Green.position = Vector2(15*64+32,16*64+32)
-		3:
+		4:
 			$Red.position = Vector2(2*64+32,8*64+32)
 			$Green.position = Vector2(1*64+32,8*64+32)
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
-		4:
+		5:
 			$Red.position = Vector2(2*64+32,6*64+32)
 			$Green.position = Vector2(1*64+32,6*64+32)
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
-		5:
+		6:
 			$Red.position = Vector2(1*64+32,2*64+32)
 			$Green.position = Vector2(14*64+32,2*64+32)
 			$Red.initial_direction = 1
