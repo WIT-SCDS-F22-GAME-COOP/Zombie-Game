@@ -27,8 +27,9 @@ settings/fps/force_fps=60
 
 window/size/width=1152
 window/size/height=768
-window/size/resizable=false
 window/vsync/use_vsync=false
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [gui]
 
