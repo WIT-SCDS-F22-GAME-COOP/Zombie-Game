@@ -212,7 +212,6 @@ align = 1
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 864, 576 )
 current = true
-zoom = Vector2( 1.5, 1.5 )
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
