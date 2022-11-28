@@ -71,16 +71,16 @@ func walk(x):
 func wall_check(x):
 	match(x):
 		0:
-			if (current_floor[1] == 0):
+			if (current_floor[1] == 0 || current_floor[1] - id == 10):
 				x = Tiles.flip(x)
 		1:
-			if (current_floor[5] == 0):
+			if (current_floor[5] == 0 || current_floor[5] - id == 10):
 				x = Tiles.flip(x)
 		2:
-			if (current_floor[7] == 0):
+			if (current_floor[7] == 0 || current_floor[7] - id == 10):
 				x = Tiles.flip(x)
 		3:
-			if (current_floor[3] == 0):
+			if (current_floor[3] == 0 || current_floor[3] - id == 10):
 				x = Tiles.flip(x)
 	return x
 
