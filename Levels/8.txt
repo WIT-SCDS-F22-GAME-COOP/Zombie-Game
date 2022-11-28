@@ -1,0 +1,3 @@
+red: CCW x1, CW x4, right x1
+green: CCW x2, left x1
+both: CCW x1, up x2
