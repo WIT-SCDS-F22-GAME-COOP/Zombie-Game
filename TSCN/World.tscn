@@ -543,6 +543,7 @@ tile_data = PoolIntArray( 65555, 12, 0, 65556, 12, 0, 65557, 12, 0, 65558, 13, 0
 modulate = Color( 0.0470588, 0.662745, 0.490196, 1 )
 position = Vector2( -256, 0 )
 frames = SubResource( 8 )
+frame = 1
 playing = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

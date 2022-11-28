@@ -109,9 +109,9 @@ func convert_color(x):
 	if id == 2:
 		match(x):
 			6:
-				x = 1
-			7:
 				x = 0
+			7:
+				x = 1
 			8:
 				x = 2
 			9:
@@ -123,9 +123,9 @@ func convert_color(x):
 	elif id == 1:
 		match(x - 6):
 			6:
-				x = 1
-			7:
 				x = 0
+			7:
+				x = 1
 			8:
 				x = 2
 			9:
