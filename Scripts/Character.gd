@@ -86,8 +86,7 @@ func wall_check(x):
 
 
 func use_tile(x):
-	if x == -1:
-		x = 99
+	x = convert_color(x)
 	match(x):
 		0:
 			direction = Tiles.turn(direction,false)
@@ -102,8 +101,40 @@ func use_tile(x):
 			move_direction = 3
 		5:
 			move_direction = 1
-		99:
+		-1:
 			use_permanent_tile()
+
+
+func convert_color(x):
+	if id == 2:
+		match(x):
+			6:
+				x = 1
+			7:
+				x = 0
+			8:
+				x = 2
+			9:
+				x = 3
+			10:
+				x = 4
+			11:
+				x = 5
+	elif id == 1:
+		match(x - 6):
+			6:
+				x = 1
+			7:
+				x = 0
+			8:
+				x = 2
+			9:
+				x = 3
+			10:
+				x = 4
+			11:
+				x = 5
+	return x
 
 
 # TurnL 5, TurnR 6, Up 7, Down 8, Left 9, Right 10
