@@ -3,12 +3,29 @@ extends Node
 var current_button = 0
 var selected_tile_pos = Vector2.ZERO
 var selected_tile = -1
+var durability_matrix = []
+var matrix_output = ""
+var last_pos_red = Vector2.ZERO
+var last_pos_green = Vector2.ZERO
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	assign_ids()
 	draw_map(Global.level)
 	level_specific()
+	for x in range(25):
+		durability_matrix.append([])
+		for y in range(16):
+			match $ActionTile.get_cell(x+1, y+1):
+				-1:
+					durability_matrix[x].append(-1)
+				0:
+					durability_matrix[x].append(2)
+				1:
+					durability_matrix[x].append(3)
+				_:
+					durability_matrix[x].append(-1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,6 +41,8 @@ func _process(delta):
 			selected_tile = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
 			$SelectedCursor.position = $Cursor.position
 		elif (selected_tile != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1 && initial_pos_check()):
+			durability_matrix[$Cursor.tile_position.x-1][$Cursor.tile_position.y-1] = durability_matrix[selected_tile_pos.x-1][selected_tile_pos.y-1]
+			durability_matrix[selected_tile_pos.x-1][selected_tile_pos.y-1] = -1;
 			$ActionTile.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile, false,false,false, Vector2(0,0))
 			$ActionTile.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
 			selected_tile = -1
@@ -100,12 +119,27 @@ func assign_ids():
 	$Green.modulate = Color(0,1,0)
 
 func pass_tile():
+
 	var red = Tiles.get_tile($Red.position)
 	var green = Tiles.get_tile($Green.position)
 	$Red.current_tile = $ActionTile.get_cell(red.x,red.y)
 	$Green.current_tile = $ActionTile.get_cell(green.x,green.y)
 	$Red.current_floor = pass_floor($Red.current_floor,red)
 	$Green.current_floor = pass_floor($Green.current_floor,green)
+	
+	if (red != last_pos_red):
+		last_pos_red = red
+		if(durability_matrix[red.x-1][red.y-1] > 0):
+			durability_matrix[red.x-1][red.y-1] -=1
+			if (durability_matrix[red.x-1][red.y-1] == 0):
+				$ActionTile.set_cell(red.x, red.y, -1, false,false,false, Vector2(0,0))
+	
+	if (green != last_pos_green):
+		last_pos_green = green
+		if(durability_matrix[green.x-1][green.y-1] > 0):
+			durability_matrix[green.x-1][green.y-1] -=1
+			if (durability_matrix[green.x-1][green.y-1] == 0):
+				$ActionTile.set_cell(green.x, green.y, -1, false,false,false, Vector2(0,0))
 
 func pass_floor(a,b):
 	a[3] = $TileMap.get_cell(b.x - 1,b.y)
@@ -157,6 +191,16 @@ func draw_map(x):
 # Temporary button
 func _on_Button_pressed():
 	Global.return_menu()
+	
+#prints durability matrix for testing
+func print_matrix():
+	matrix_output = ""
+	for y in range(16):
+			for x in range(25):
+				matrix_output += str(durability_matrix[x][y])
+				matrix_output += ", "
+			matrix_output += "\n"
+	print(matrix_output)
 
 
 func _Back_Button_Entered(area):
