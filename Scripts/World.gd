@@ -127,19 +127,18 @@ func pass_tile():
 
 	var red = Tiles.get_tile($Red.position)
 	var green = Tiles.get_tile($Green.position)
-	$Red.current_tile = $ActionTile.get_cell(red.x,red.y)
-	$Green.current_tile = $ActionTile.get_cell(green.x,green.y)
-	$Red.current_floor = pass_floor($Red.current_floor,red)
-	$Green.current_floor = pass_floor($Green.current_floor,green)
-	
-	if (red != last_pos_red):
+	if (red != last_pos_red || green != last_pos_green):
+		$Red.current_tile = $ActionTile.get_cell(red.x,red.y)
+		$Green.current_tile = $ActionTile.get_cell(green.x,green.y)
+		$Red.current_floor = pass_floor($Red.current_floor,red)
+		$Green.current_floor = pass_floor($Green.current_floor,green)
+		
 		last_pos_red = red
 		if(durability_matrix[red.x-1][red.y-1] > 0):
 			durability_matrix[red.x-1][red.y-1] -=1
 			if (durability_matrix[red.x-1][red.y-1] == 0):
 				$ActionTile.set_cell(red.x, red.y, -1, false,false,false, Vector2(0,0))
 	
-	if (green != last_pos_green):
 		last_pos_green = green
 		if(durability_matrix[green.x-1][green.y-1] > 0):
 			durability_matrix[green.x-1][green.y-1] -=1
