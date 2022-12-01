@@ -36,7 +36,6 @@ func _process(delta):
 		_on_Button_pressed()
 		
 	if Input.is_action_just_pressed("select"):
-		$LossGraphic.visible = false
 		if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1 && initial_pos_check()):
 			selected_tile_pos = $Cursor.tile_position
 			selected_tile = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
@@ -55,10 +54,6 @@ func _process(delta):
 		$WinGraphic.visible = true
 	else:
 		$WinGraphic.visible = false
-	
-	fail_check($Red.frames,$Red.failed)
-	fail_check($Green.frames,$Green.failed)
-	pass_tile()
 
 
 func initial_pos_check():
@@ -124,22 +119,19 @@ func assign_ids():
 	$Green.modulate = Color(0,1,0)
 
 func pass_tile():
-
 	var red = Tiles.get_tile($Red.position)
 	var green = Tiles.get_tile($Green.position)
-	$Red.current_tile = $ActionTile.get_cell(red.x,red.y)
-	$Green.current_tile = $ActionTile.get_cell(green.x,green.y)
-	$Red.current_floor = pass_floor($Red.current_floor,red)
-	$Green.current_floor = pass_floor($Green.current_floor,green)
-	
-	if (red != last_pos_red):
+	if (red != last_pos_red || (green != last_pos_green)):
+		$Red.current_tile = $ActionTile.get_cell(red.x,red.y)
+		$Green.current_tile = $ActionTile.get_cell(green.x,green.y)
+		$Red.current_floor = pass_floor($Red.current_floor,red)
+		$Green.current_floor = pass_floor($Green.current_floor,green)
+
 		last_pos_red = red
 		if(durability_matrix[red.x-1][red.y-1] > 0):
 			durability_matrix[red.x-1][red.y-1] -=1
 			if (durability_matrix[red.x-1][red.y-1] == 0):
 				$ActionTile.set_cell(red.x, red.y, -1, false,false,false, Vector2(0,0))
-	
-	if (green != last_pos_green):
 		last_pos_green = green
 		if(durability_matrix[green.x-1][green.y-1] > 0):
 			durability_matrix[green.x-1][green.y-1] -=1
@@ -212,17 +204,3 @@ func _Back_Button_Entered(area):
 	current_button = 1
 func _Back_Button_Left(area):
 	current_button = 0
-	
-	
-func fail_check(x,y):
-	if x != -1 && y == true:
-		$LossGraphic.visible = true
-		$LossTimer.start()
-		$Red.failed = false
-		$Green.failed = false
-		$Green.reset()
-		$Red.reset()
-
-
-func _on_LossTimer_timeout():
-	$LossGraphic.visible = false

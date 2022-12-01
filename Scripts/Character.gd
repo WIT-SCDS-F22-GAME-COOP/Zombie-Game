@@ -6,7 +6,6 @@ var move_direction = -1
 
 var id = 0
 var frames = -1
-var failed = false
 
 var starting_pos = Vector2.ZERO
 var current_tile = -1
@@ -19,27 +18,26 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("start_level"):
+	# Do not leave active after game timer implemented
+	# Mapped to R button, walks
+	if Input.is_action_just_pressed("debug_input"):
 		frames = 0
+	# Mapped to T button, turns right
+#	if Input.is_action_just_pressed("debug_input2"):
+#		direction = Tiles.turn(direction, true)
 	
+	# Update with any new level attributes added
 	if Input.is_action_just_pressed("reset_level") && starting_pos != Vector2(0,0):
-		reset()
+		frames = -1
+		Global.points = 0
+		global_position = starting_pos
+		direction = initial_direction
+		move_direction = -1
 	
 	if frames != -1 && global_position.x > 0:
 		frames = frames + 1
 		if frames % 5 == 0:
 			tick()
-	
-	if current_floor[4] == 0:
-		failed = true
-
-# Update with any new level attributes added
-func reset():
-	frames = -1
-	Global.points = 0
-	global_position = starting_pos
-	direction = initial_direction
-	move_direction = -1
 
 func tick():
 	use_tile(current_tile)
