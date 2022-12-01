@@ -36,6 +36,7 @@ func _process(delta):
 		_on_Button_pressed()
 		
 	if Input.is_action_just_pressed("select"):
+		$LossGraphic.visible = false
 		if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1 && initial_pos_check()):
 			selected_tile_pos = $Cursor.tile_position
 			selected_tile = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
@@ -54,6 +55,10 @@ func _process(delta):
 		$WinGraphic.visible = true
 	else:
 		$WinGraphic.visible = false
+	
+	fail_check($Red.frames,$Red.failed)
+	fail_check($Green.frames,$Green.failed)
+	pass_tile()
 
 
 func initial_pos_check():
@@ -207,3 +212,17 @@ func _Back_Button_Entered(area):
 	current_button = 1
 func _Back_Button_Left(area):
 	current_button = 0
+	
+	
+func fail_check(x,y):
+	if x != -1 && y == true:
+		$LossGraphic.visible = true
+		$LossTimer.start()
+		$Red.failed = false
+		$Green.failed = false
+		$Green.reset()
+		$Red.reset()
+
+
+func _on_LossTimer_timeout():
+	$LossGraphic.visible = false
