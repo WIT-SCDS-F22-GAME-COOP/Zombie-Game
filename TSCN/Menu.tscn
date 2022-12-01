@@ -170,7 +170,6 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Button/Area2D"]
-visible = false
 position = Vector2( 374, 168 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 3 )
@@ -192,7 +191,6 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Button2/Area2D"]
-visible = false
 position = Vector2( 46.3333, 9.66666 )
 shape = SubResource( 4 )
 __meta__ = {

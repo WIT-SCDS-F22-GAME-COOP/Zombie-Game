@@ -7,6 +7,9 @@ var durability_matrix = []
 var matrix_output = ""
 var last_pos_red = Vector2.ZERO
 var last_pos_green = Vector2.ZERO
+var tiles_array = []
+var fill_tiles_x = 20
+var fill_tiles_y = 2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +17,19 @@ func _ready():
 	assign_ids()
 	draw_map(Global.level)
 	level_specific()
+	
+	#creates the action tiles for the level
+	for x in range(tiles_array.size()):
+		for y in range(tiles_array[x]):
+			$ActionTile.set_cell(fill_tiles_x, fill_tiles_y, x, false,false,false, Vector2(0,0))
+			print(matrix_output)
+			fill_tiles_x += 1
+			if (fill_tiles_x > 24):
+				fill_tiles_y += 1
+				fill_tiles_x = 20
+
+	#Defines durability for each tile match the number with which tile it is in the list and append durability
+	#-1 for infinite durability
 	for x in range(25):
 		durability_matrix.append([])
 		for y in range(16):
@@ -76,6 +92,7 @@ func level_specific():
 		1:
 			$Red.position = Vector2(6*64+32,16*64+32)
 			$Green.position = Vector2(7*64+32,16*64+32)
+			tiles_array = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 		2:
 			$Red.position = Vector2(6*64+32,16*64+32)
 			$Green.position = Vector2(7*64+32,16*64+32)
