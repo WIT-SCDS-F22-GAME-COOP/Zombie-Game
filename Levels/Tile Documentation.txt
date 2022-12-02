@@ -16,7 +16,7 @@ Column 3: direction
 	White up		"up"
 	Black right		"right"
 	Red down		"down"
-	Green left		"ERROR"
+	Green left		"left"
 Column 4: durability
 	White one		"1"
 	Black two		"2"

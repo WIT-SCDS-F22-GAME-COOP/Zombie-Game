@@ -79,15 +79,15 @@ func read_tile(arr):
 		name = name + "ERROR"
 	
 	if str(arr[3]) == "1,1,1,1":
-		dur = "1"
+		dur = 1
 	elif str(arr[3]) == "0,0,0,1":
-		dur = "2"
+		dur = 2
 	elif str(arr[3]) == "1,0,0,1":
-		dur = "3"
+		dur = 3
 	elif str(arr[3]) == "0,1,0,1":
-		dur = "4"
+		dur = 4
 	else:
-		dur = "-1"
+		dur = 5
 	
 	var x = []
 	x.append(name)
@@ -137,5 +137,6 @@ func interpret_tile(arr):
 	
 	if "ERROR" in str(arr[0]):
 		arr[0] = -1
+		arr[1] = -1
 	
 	return arr

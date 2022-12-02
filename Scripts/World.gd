@@ -2,7 +2,8 @@ extends Node
 
 var current_button = 0
 var selected_tile_pos = Vector2.ZERO
-var selected_tile = -1
+# X = Tile, Y = Durability
+var selected_tile = Vector2(-1,-1)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,6 +11,7 @@ func _ready():
 	assign_ids()
 	draw_tiles(Global.level)
 	draw_map(Global.level)
+	durmap_backup()
 	level_specific()
 
 
@@ -24,12 +26,17 @@ func _process(delta):
 		$LossGraphic.visible = false
 		if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1 && initial_pos_check()):
 			selected_tile_pos = $Cursor.tile_position
-			selected_tile = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
+			selected_tile.x = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
+			selected_tile.y = $DurMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
 			$SelectedCursor.position = $Cursor.position
-		elif (selected_tile != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1 && initial_pos_check()):
-			$ActionTile.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile, false,false,false, Vector2(0,0))
+		elif (selected_tile.x != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1 && initial_pos_check()):
+			$ActionTile.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile.x, false,false,false, Vector2(0,0))
 			$ActionTile.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
-			selected_tile = -1
+			$DurMap.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile.y, false,false,false, Vector2(0,0))
+			$DurMap.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
+			selected_tile.x = -1
+			selected_tile.y = -1
+			durmap_backup()
 			$SelectedCursor.position = Vector2(-256,0)
 		
 	pass_tile()
@@ -42,6 +49,9 @@ func _process(delta):
 	fail_check($Red.frames,$Red.failed)
 	fail_check($Green.frames,$Green.failed)
 	pass_tile()
+	
+	if Input.is_action_just_pressed("reset_level"):
+		durmap_restore()
 
 
 func initial_pos_check():
@@ -137,7 +147,14 @@ func pass_floor(a,b):
 # If other colors are added for starting map tiles, make sure to standardize
 # and write them down, then add them to this function
 # Placeable tiles and other level data will be handled separately
+# For placeable tiles, read the documentation in the levels folder
 func draw_map(x):
+	# Clean up the walls from tile generation
+	for index in (30):
+		for index2 in (30):
+			if $TileMap.get_cell(index2,index) == 0:
+				$TileMap.set_cell(index2,index,1,false,false,false,Vector2(0,0))
+	
 	var image = load(x)
 	var data = image.get_data()
 	data.lock()
@@ -177,12 +194,27 @@ func draw_tiles(x):
 			actually_draw_the_tile(tile)
 		#var pixel = data.get_pixel(index,index2)
 
+# A separate method just so it can return and end the loop
+# If I wasn't so tired I'm sure I'd remember a better way
 func actually_draw_the_tile(tile):
 	for index in (30):
 		for index2 in (30):
 			if $TileMap.get_cell(index2,index) == 0 && $ActionTile.get_cell(index2,index) == -1:
 				$ActionTile.set_cell(index2,index,tile[0],false,false,false,Vector2(0,0))
+				var x = tile[1]
+				$DurMap.set_cell(index2,index,x,false,false,false,Vector2(0,0))
 				return
+
+# Backup map allows for restoring after reset
+func durmap_backup():
+	for index in (30):
+		for index2 in (30):
+			$BackupDurMap.set_cell(index,index2,$DurMap.get_cell(index,index2),false,false,false,Vector2(0,0))
+
+func durmap_restore():
+	for index in (30):
+		for index2 in (30):
+			$DurMap.set_cell(index,index2,$BackupDurMap.get_cell(index,index2),false,false,false,Vector2(0,0))
 
 # Temporary button
 func _on_Button_pressed():
@@ -203,6 +235,7 @@ func fail_check(x,y):
 		$Green.failed = false
 		$Green.reset()
 		$Red.reset()
+		durmap_restore()
 
 
 func _on_LossTimer_timeout():
