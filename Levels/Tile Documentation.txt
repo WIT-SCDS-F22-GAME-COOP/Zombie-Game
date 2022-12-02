@@ -22,4 +22,4 @@ Column 4: durability
 	Black two		"2"
 	Red three		"3"
 	Green four		"4"
-	Blue infinite	"-1"
+	Blue infinite	"5"
