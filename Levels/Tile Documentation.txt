@@ -1,0 +1,25 @@
+The rightmost four columns in an image determine which tiles are available in that level.
+
+If column 1 is white for any given row, the rest of the information will not be read on that row.
+
+Left to right:
+
+Column 1: tile type
+	White none		"ERROR"
+	Black turn		"turn"
+	Red push		"push"
+Column 2: tile color
+	Red			"red"
+	Green			"green"
+	White general	"gen"
+Column 3: direction
+	White up		"up"
+	Black right		"right"
+	Red down		"down"
+	Green left		"ERROR"
+Column 4: durability
+	White one		"1"
+	Black two		"2"
+	Red three		"3"
+	Green four		"4"
+	Blue infinite	"-1"
