@@ -11,6 +11,8 @@ var failed = false
 var starting_pos = Vector2.ZERO
 var current_tile = -1
 var current_floor = [-1,-1,-1,-1,-1,-1,-1,-1,-1,]
+var current_dur = -1
+signal dur_lower(x)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -89,22 +91,29 @@ func wall_check(x):
 
 func use_tile(x):
 	x = convert_color(x)
-	match(x):
-		0:
-			direction = Tiles.turn(direction,false)
-		1:
-			direction = Tiles.turn(direction,true)
-		# UDLR
-		2:
-			move_direction = 0
-		3:
-			move_direction = 2
-		4:
-			move_direction = 3
-		5:
-			move_direction = 1
-		-1:
-			use_permanent_tile()
+	if current_dur > 0:
+		match(x):
+			0:
+				direction = Tiles.turn(direction,false)
+				emit_signal("dur_lower",id)
+			1:
+				direction = Tiles.turn(direction,true)
+				emit_signal("dur_lower",id)
+			# UDLR
+			2:
+				move_direction = 0
+				emit_signal("dur_lower",id)
+			3:
+				move_direction = 2
+				emit_signal("dur_lower",id)
+			4:
+				move_direction = 3
+				emit_signal("dur_lower",id)
+			5:
+				move_direction = 1
+				emit_signal("dur_lower",id)
+	elif x == -1:
+				use_permanent_tile()
 
 
 func convert_color(x):

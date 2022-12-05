@@ -52,6 +52,9 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("reset_level"):
 		durmap_restore()
+	
+	#lower_durability($Red.position)
+	#lower_durability($Green.position)
 
 
 func initial_pos_check():
@@ -123,6 +126,8 @@ func pass_tile():
 	$Green.current_tile = $ActionTile.get_cell(green.x,green.y)
 	$Red.current_floor = pass_floor($Red.current_floor,red)
 	$Green.current_floor = pass_floor($Green.current_floor,green)
+	$Red.current_dur = $DurMap.get_cell(red.x,red.y)
+	$Green.current_dur = $DurMap.get_cell(green.x,green.y)
 
 
 func pass_floor(a,b):
@@ -240,3 +245,17 @@ func fail_check(x,y):
 
 func _on_LossTimer_timeout():
 	$LossGraphic.visible = false
+
+func lower_durability(pos):
+	pos = Tiles.get_tile(pos)
+	var dur = $DurMap.get_cell(pos.x,pos.y)
+	if dur > 0 && dur < 5:
+		$DurMap.set_cell(pos.x,pos.y,dur-1,false,false,false,Vector2(0,0))
+
+
+# This thing is magic
+func _on_dur_lower_signal(x):
+	if x == 1:
+		lower_durability($Red.position)
+	elif x == 2:
+		lower_durability($Green.position)
