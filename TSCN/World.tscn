@@ -717,7 +717,6 @@ modulate = Color( 0.0470588, 0.662745, 0.490196, 1 )
 position = Vector2( -256, 0 )
 z_index = 2
 frames = SubResource( 8 )
-frame = 1
 playing = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
