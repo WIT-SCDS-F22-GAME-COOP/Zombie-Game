@@ -111,6 +111,12 @@ func level_specific():
 			$Green.position = Vector2(16*64+32,16*64+32)
 			$Red.initial_direction = 2
 			$TileMap.set_cell(1,10,11,false,false,false,Vector2(0,0))
+		9:
+			$Red.position = Vector2(2*64+32,8*64+32)
+			$Green.position = Vector2(1*64+32,8*64+32)
+			$TileMap.set_cell(11,10,6,false,false,false,Vector2(0,0))
+			$Red.initial_direction = 1
+			$Green.initial_direction = 1
 
 
 func assign_ids():
