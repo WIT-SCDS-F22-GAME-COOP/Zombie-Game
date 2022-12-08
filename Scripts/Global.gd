@@ -18,11 +18,17 @@ func _ready():
 #func _process(delta):
 #	pass
 
+# Changes what level is started when start is pressed
+# x is an integer value that corresponds to a level number
+# I suppose it could read any string, technically
+# However all levels are currently numbered to easily cycle them.
 func change_level(x):
 	level = "res://Levels/" + str(x) + ".png"
 	level_int = x
 	print(level)
 
+# Resets the variables necessary for the menu
+# Then actually returns to menu
 func return_menu():
 	menu = true
 	points = 0

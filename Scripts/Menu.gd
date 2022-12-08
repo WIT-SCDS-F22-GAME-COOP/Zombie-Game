@@ -1,5 +1,18 @@
 extends Node
 
+# Zombie Game (or whatever it gets renamed)
+#
+# Written by Ryan Brown and Lucas De Caux for Dr. G's Fall 2022 educational games co-op.
+# Primarily commented by Ryan Brown.
+#
+# This is the first scene you'll see, so here's some information.
+# Directly to the left there's a list of all scripts in this project.
+# Both Global.gd and Tile_Functions.gd are globally accessible.
+# You can access their functions and variables with Global.whatever and Tiles.whatever.
+#
+# Also, sorry for any hell-code we left in.
+
+
 # Change as levels are added
 var last_level = 9
 

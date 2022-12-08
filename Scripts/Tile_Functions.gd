@@ -30,6 +30,9 @@ func turn(dir,right):
 			dir = 3
 	return dir
 
+# Turns direction around to the opposite
+# I mean, what did you think flipping was?
+# Same direction values as used by turn, as well as basically everything else.
 func flip(dir):
 	match(dir):
 		0:
@@ -43,12 +46,18 @@ func flip(dir):
 	return dir
 
 # Converts a position value to a tile
+# Each tile is 64 pixels, so they get divided by 64.
+# And characters go in the middle, so subtract half a tile.
 func get_tile(a):
 	var b = Vector2.ZERO
 	b.x = (a.x - 32) / 64
 	b.y = (a.y - 32) / 64
 	return b
 
+# Turns placeable tile names readable, then send to interpret tile
+# At the end returns the ID of a tile
+# arr is the values of the final four columns in the image
+# x[0] = tile ID, x[1] = tile durability
 func read_tile(arr):
 	var name
 	var dur = -1
@@ -96,6 +105,8 @@ func read_tile(arr):
 	return x
 
 # I hate how this is more efficient than the alternative
+# These are literally all just converting to tile IDs
+# If you ever reorder the action tiles, you'll have to fix ALL of this
 func interpret_tile(arr):
 	match(arr[0]):
 		"pushredup":
@@ -134,7 +145,11 @@ func interpret_tile(arr):
 			arr[0]=1
 		"turngenleft":
 			arr[0]=0
+		_:
+			arr[0] = -1
+			arr[1] = -1
 	
+	# Hopefully this is never able to happen
 	if "ERROR" in str(arr[0]):
 		arr[0] = -1
 		arr[1] = -1
