@@ -160,6 +160,8 @@ margin_top = 181.0
 margin_right = 377.0
 margin_bottom = 201.0
 rect_scale = Vector2( 6, 6 )
+focus_mode = 0
+enabled_focus_mode = 0
 text = "start"
 
 [node name="Area2D" type="Area2D" parent="Button"]
@@ -183,6 +185,8 @@ margin_top = 259.0
 margin_right = 920.0
 margin_bottom = 279.0
 rect_scale = Vector2( 6, 6 )
+focus_mode = 0
+enabled_focus_mode = 0
 text = "change level"
 
 [node name="Area2D" type="Area2D" parent="Button2"]

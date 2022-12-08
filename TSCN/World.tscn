@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Graphics/placeholder_tiles.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/World.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Graphics/tile065.png" type="Texture" id=13]
 [ext_resource path="res://Graphics/tile070.png" type="Texture" id=14]
 [ext_resource path="res://Graphics/tile069.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/font/Boxy-Bold.ttf" type="DynamicFontData" id=16]
 
 [sub_resource type="TileSet" id=10]
 0/name = "placeholder_tiles.png 0"
@@ -199,6 +200,9 @@
 12/shape_one_way_margin = 0.0
 12/shapes = [  ]
 12/z_index = 0
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 16 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 66.8, 12.2 )
@@ -458,12 +462,10 @@ extents = Vector2( 66.8, 12.2 )
 17/z_index = 0
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 64, 0, 64, 64 )
 
@@ -857,13 +859,17 @@ offset = Vector2( 864, 576 )
 current = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 1, 0, 0, 1 )
-margin_left = 1217.0
-margin_top = 237.0
-margin_right = 1331.0
-margin_bottom = 268.0
-rect_scale = Vector2( 4, 4 )
-text = "remove later"
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 1214.0
+margin_top = 74.0
+margin_right = 1363.0
+margin_bottom = 173.0
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = SubResource( 14 )
+text = "Level Name"
+align = 1
+autowrap = true
+uppercase = true
 
 [node name="Red" parent="." instance=ExtResource( 4 )]
 position = Vector2( 160, 96 )
@@ -879,6 +885,8 @@ margin_top = 1023.0
 margin_right = 1440.0
 margin_bottom = 1043.0
 rect_scale = Vector2( 3, 3 )
+focus_mode = 0
+enabled_focus_mode = 0
 text = "BACK TO MENU"
 
 [node name="Area2D" type="Area2D" parent="Button"]
@@ -906,7 +914,6 @@ modulate = Color( 0.0470588, 0.662745, 0.490196, 1 )
 position = Vector2( -256, 0 )
 z_index = 2
 frames = SubResource( 8 )
-frame = 1
 playing = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

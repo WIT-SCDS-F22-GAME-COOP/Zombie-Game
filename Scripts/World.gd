@@ -7,6 +7,8 @@ var selected_tile = Vector2(-1,-1)
 
 var new_walls = false
 
+var level_name = "UNNAMED"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +17,7 @@ func _ready():
 	draw_map(Global.level)
 	durmap_backup()
 	level_specific()
+	$Label.text = level_name
 	if new_walls:
 		draw_walls_new()
 	else:
@@ -25,7 +28,8 @@ func _ready():
 func _process(delta):
 	# Debug info on cursor's current position.
 	# Can just be hidden for release.
-	$Label.text = str($Cursor.tile_position)
+	if level_name == "UNNAMED":
+		$Label.text = str($Cursor.tile_position)
 	
 	if current_button == 1 && Input.is_action_just_pressed("select"):
 		_on_Button_pressed()
@@ -97,22 +101,27 @@ func level_specific():
 		1:
 			$Red.position = Vector2(6*64+32,16*64+32)
 			$Green.position = Vector2(7*64+32,16*64+32)
+			level_name = "Starting Simple"
 		2:
 			$Red.position = Vector2(6*64+32,16*64+32)
 			$Green.position = Vector2(7*64+32,16*64+32)
+			level_name = "The Long Way Around"
 		4:
 			$Red.position = Vector2(16*64+32,16*64+32)
 			$Green.position = Vector2(15*64+32,16*64+32)
+			level_name = "Hitting a Wall"
 		3:
 			$Red.position = Vector2(2*64+32,8*64+32)
 			$Green.position = Vector2(1*64+32,8*64+32)
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
+			level_name = "Acrobatics"
 		5:
 			$Red.position = Vector2(2*64+32,6*64+32)
 			$Green.position = Vector2(1*64+32,6*64+32)
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
+			level_name = "Cornering"
 		6:
 			$Red.position = Vector2(1*64+32,2*64+32)
 			$Green.position = Vector2(14*64+32,2*64+32)
@@ -122,7 +131,8 @@ func level_specific():
 			$TileMap.set_cell(8,1,6,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(16,1,8,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(16,2,6,false,false,false,Vector2(0,0))
-		7:
+			level_name = "Multi-Function Room"
+		8:
 			$Red.position = Vector2(8*64+32,11*64+32)
 			$Green.position = Vector2(8*64+32,10*64+32)
 			$TileMap.set_cell(8,5,11,false,false,false,Vector2(0,0))
@@ -131,17 +141,20 @@ func level_specific():
 			$TileMap.set_cell(6,12,5,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(6,11,10,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(7,11,10,false,false,false,Vector2(0,0))
-		8:
+			level_name = "One Way"
+		9:
 			$Red.position = Vector2(1*64+32,1*64+32)
 			$Green.position = Vector2(16*64+32,16*64+32)
 			$Red.initial_direction = 2
 			$TileMap.set_cell(1,10,11,false,false,false,Vector2(0,0))
-		9:
+			level_name = "A Difficult Task"
+		7:
 			$Red.position = Vector2(2*64+32,8*64+32)
 			$Green.position = Vector2(1*64+32,8*64+32)
 			$TileMap.set_cell(11,10,6,false,false,false,Vector2(0,0))
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
+			level_name = "Single-Function Room"
 
 
 # Just gives the two characters different ID values to reference

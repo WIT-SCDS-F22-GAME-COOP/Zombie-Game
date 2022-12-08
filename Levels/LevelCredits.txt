@@ -5,5 +5,5 @@
 5: Ryan Brown
 6: Ryan Brown
 7: Ryan Brown
-8: Jonathan "Mark" Rapp
-9: Ryan Brown
+8: Ryan Brown
+9: Jonathan "Mark" Rapp
