@@ -131,7 +131,7 @@ func level_specific():
 			$TileMap.set_cell(8,1,6,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(16,1,8,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(16,2,6,false,false,false,Vector2(0,0))
-			level_name = "Multi-Function Room"
+			level_name = "Multi Function Room"
 		8:
 			$Red.position = Vector2(8*64+32,11*64+32)
 			$Green.position = Vector2(8*64+32,10*64+32)
@@ -154,7 +154,7 @@ func level_specific():
 			$TileMap.set_cell(11,10,6,false,false,false,Vector2(0,0))
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
-			level_name = "Single-Function Room"
+			level_name = "Single Function Room"
 
 
 # Just gives the two characters different ID values to reference
