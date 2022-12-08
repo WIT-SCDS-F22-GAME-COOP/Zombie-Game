@@ -5,6 +5,8 @@ var selected_tile_pos = Vector2.ZERO
 # X = Tile, Y = Durability
 var selected_tile = Vector2(-1,-1)
 
+var new_walls = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +15,10 @@ func _ready():
 	draw_map(Global.level)
 	durmap_backup()
 	level_specific()
-	draw_walls()
+	if new_walls:
+		draw_walls_new()
+	else:
+		draw_walls()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -261,10 +266,30 @@ func durmap_restore():
 			$DurMap.set_cell(index,index2,$BackupDurMap.get_cell(index,index2),false,false,false,Vector2(0,0))
 
 
+# Currently functional, less interesting walls
+# Just randomly picks a texture of brick
+func draw_walls():
+	var random_generator = RandomNumberGenerator.new()
+	random_generator.randomize()
+	for index in (18):
+		for index2 in (18):
+			if $TileMap.get_cell(index,index2) == 0:
+				var x = random_generator.randi()%10+1
+				if x <= 7:
+					$WallGraphics.set_cell(index,index2,9,false,false,false,Vector2(0,0))
+				elif x == 8:
+					$WallGraphics.set_cell(index,index2,10,false,false,false,Vector2(0,0))
+				elif x == 9:
+					$WallGraphics.set_cell(index,index2,11,false,false,false,Vector2(0,0))
+				elif x >= 10:
+					$WallGraphics.set_cell(index,index2,12,false,false,false,Vector2(0,0))
+
+
 # I hate this function
 # Draws wall graphics over the actual functional, pure black walls
 # It kind of works
-func draw_walls():
+# Maybe worth activating if you can fix the bugs
+func draw_walls_new():
 	for index in (18):
 		for index2 in (18):
 			if $TileMap.get_cell(index,index2) == 0 && $TileMap.get_cell(index,index2+1) != 0:
