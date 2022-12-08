@@ -322,7 +322,7 @@ margin_bottom = 1075.0
 rect_scale = Vector2( 1.5, 1.5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 7 )
-text = "Press [SPACE] or [ENTER] to return"
+text = "Press [SELECT] or click to return"
 align = 2
 uppercase = true
 
@@ -330,6 +330,21 @@ uppercase = true
 position = Vector2( -288.25, 611.398 )
 scale = Vector2( 0.262695, 0.262695 )
 texture = ExtResource( 6 )
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 1006.0
+margin_top = 811.0
+margin_right = 1262.0
+margin_bottom = 913.0
+rect_scale = Vector2( 2.5, 2.5 )
+custom_fonts/font = SubResource( 7 )
+text = "CONTROLS
+MOVE: WASD/ARROWS
+SELECT: SPACE/ENTER
+START LEVEL: E
+RESET LEVEL: R"
+align = 1
+uppercase = true
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="area_entered" from="Button/Area2D" to="." method="_Start_Button_Entered"]

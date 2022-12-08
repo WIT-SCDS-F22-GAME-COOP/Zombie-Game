@@ -971,9 +971,14 @@ z_index = -1
 tile_set = SubResource( 13 )
 format = 1
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
 [connection signal="dur_lower" from="Red" to="." method="_on_dur_lower_signal"]
 [connection signal="dur_lower" from="Green" to="." method="_on_dur_lower_signal"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="area_entered" from="Button/Area2D" to="." method="_Back_Button_Entered"]
 [connection signal="area_exited" from="Button/Area2D" to="." method="_Back_Button_Left"]
 [connection signal="timeout" from="LossTimer" to="." method="_on_LossTimer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

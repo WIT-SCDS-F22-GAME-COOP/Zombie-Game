@@ -40,7 +40,7 @@ func _process(delta):
 		_on_Button2_pressed()
 	elif current_button == 3 && Input.is_action_just_pressed("select"):
 		_on_Button3_pressed()
-	elif Input.is_action_just_pressed("select") && $Cursor.position.x < 0:
+	elif (Input.is_action_just_pressed("select") || Input.is_action_just_pressed("click")) && $Cursor.position.x < 0:
 		$Camera2D2.current = false
 		$Camera2D.current = true
 		menu_location = 0

@@ -34,24 +34,8 @@ func _process(delta):
 	if current_button == 1 && Input.is_action_just_pressed("select"):
 		_on_Button_pressed()
 	
-	# Direct all questions on this if statement to Lucas De Caux.
-	# I'm not super familiar with it.
 	if Input.is_action_just_pressed("select"):
-		$LossGraphic.visible = false
-		if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1 && initial_pos_check()):
-			selected_tile_pos = $Cursor.tile_position
-			selected_tile.x = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
-			selected_tile.y = $DurMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
-			$SelectedCursor.position = $Cursor.position
-		elif (selected_tile.x != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1 && initial_pos_check()):
-			$ActionTile.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile.x, false,false,false, Vector2(0,0))
-			$ActionTile.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
-			$DurMap.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile.y, false,false,false, Vector2(0,0))
-			$DurMap.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
-			selected_tile.x = -1
-			selected_tile.y = -1
-			durmap_backup()
-			$SelectedCursor.position = Vector2(-256,0)
+		selection()
 	
 	# Pass information about the current location of the characters to them.
 	pass_tile()
@@ -80,6 +64,24 @@ func _process(delta):
 	if Input.is_action_just_pressed("reset_level"):
 		durmap_restore()
 
+# Direct all questions on this function to Lucas De Caux.
+# I'm not super familiar with it.
+func selection():
+	$LossGraphic.visible = false
+	if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1 && initial_pos_check()):
+		selected_tile_pos = $Cursor.tile_position
+		selected_tile.x = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
+		selected_tile.y = $DurMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
+		$SelectedCursor.position = $Cursor.position
+	elif (selected_tile.x != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1 && initial_pos_check()):
+		$ActionTile.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile.x, false,false,false, Vector2(0,0))
+		$ActionTile.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
+		$DurMap.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile.y, false,false,false, Vector2(0,0))
+		$DurMap.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
+		selected_tile.x = -1
+		selected_tile.y = -1
+		durmap_backup()
+		$SelectedCursor.position = Vector2(-256,0)
 
 # Just checks if both characters are where they start.
 func initial_pos_check():
@@ -384,15 +386,24 @@ func _on_dur_lower_signal(x):
 		lower_durability($Green.position)
 
 
+# Mouse support
+# Left click to move and select
+# Right click to only move
 func _input(event):
 	# Mouse in viewport coordinates.
-	if event is InputEventMouseButton:
-		#print("Mouse Click/Unclick at: ", event.position)
-		var z = event.position
-		var x = int(event.position.x)
-		var y = int(event.position.y)
-		x = int(x/64)
-		y = int(y/64)
-		$Cursor.position = Vector2(x*64+32,y*64+32)
-#   elif event is InputEventMouseMotion:
-#	   print("Mouse Motion at: ", event.position)
+	if event is InputEventMouseButton && Input.is_action_just_pressed("click"):
+		move_mouse(event)
+		$Timer.start()
+	elif event is InputEventMouseButton && Input.is_action_just_pressed("click_r"):
+		move_mouse(event)
+
+func move_mouse(event):
+	var z = event.position
+	var x = int(event.position.x)
+	var y = int(event.position.y)
+	x = int(x/64)
+	y = int(y/64)
+	$Cursor.position = Vector2(x*64+32,y*64+32)
+
+func _on_Timer_timeout():
+	selection()
