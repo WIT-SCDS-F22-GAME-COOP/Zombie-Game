@@ -155,6 +155,11 @@ func level_specific():
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
 			level_name = "Single Function Room"
+		10:
+			$Red.position = Vector2(2*64+32,14*64+32)
+			$Green.position = Vector2(1*64+32,2*64+32)
+			$Green.initial_direction = 1
+			level_name = "Snake"
 
 
 # Just gives the two characters different ID values to reference
