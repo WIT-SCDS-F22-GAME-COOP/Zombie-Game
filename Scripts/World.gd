@@ -382,3 +382,17 @@ func _on_dur_lower_signal(x):
 		lower_durability($Red.position)
 	elif x == 2:
 		lower_durability($Green.position)
+
+
+func _input(event):
+	# Mouse in viewport coordinates.
+	if event is InputEventMouseButton:
+		#print("Mouse Click/Unclick at: ", event.position)
+		var z = event.position
+		var x = int(event.position.x)
+		var y = int(event.position.y)
+		x = int(x/64)
+		y = int(y/64)
+		$Cursor.position = Vector2(x*64+32,y*64+32)
+#   elif event is InputEventMouseMotion:
+#	   print("Mouse Motion at: ", event.position)
