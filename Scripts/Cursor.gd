@@ -6,7 +6,7 @@ var frames = 0
 
 func _ready():
 	if Global.menu:
-		global_position = Vector2(64*9+32,64*9+32)
+		global_position = Vector2(64*3+32,64*3+32)
 	else:
 		global_position = Vector2(64*22+32,64*11+32)
 

@@ -1,9 +1,12 @@
-1: Ryan Brown
-2: Ryan Brown
-3: Ryan Brown
-4: Ryan Brown
-5: Ryan Brown
-6: Ryan Brown
-7: Ryan Brown
-8: Ryan Brown
-9: Jonathan "Mark" Rapp
+Game Concept By
+Lucas De Caux
+
+Game Developed By
+Ryan Brown & Lucas De Caux
+Under Supervision of
+Professor Joshua Gyllinsky
+For WIT Fall Co-Op 2022
+
+Levels Designed By
+Level 1-8: Ryan Brown
+Level 9: Jonathan "Mark" Rapp
