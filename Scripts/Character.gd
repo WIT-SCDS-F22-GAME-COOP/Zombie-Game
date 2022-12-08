@@ -52,6 +52,15 @@ func _process(delta):
 	# In World.tscn this is read and checked.
 	if current_floor[4] == 0:
 		failed = true
+	
+	if (direction == 0):
+		$Sprite.set_rotation_degrees(0)
+	elif (direction == 1):
+		$Sprite.set_rotation_degrees(90)
+	elif (direction == 2):
+		$Sprite.set_rotation_degrees(180)
+	elif (direction == 3):
+		$Sprite.set_rotation_degrees(270)
 
 # Update with any new level attributes added
 # Resets character to original position, direction, etc.
