@@ -85,9 +85,7 @@ func tick():
 		# Pushes don't change direction, so the return isn't saved.
 		walk(move_direction)
 		# Resets the direction used to push.
-		move_direction = move_direction - 1
-		if move_direction == 0:
-			move_direction = -1
+		move_direction = -1
 
 # Current facing direction. 0 Up, 1 right, 2 down, 3 left
 func walk(x):
