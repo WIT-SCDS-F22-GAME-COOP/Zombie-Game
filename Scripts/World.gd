@@ -174,6 +174,16 @@ func level_specific():
 			$Green.position = Vector2(1*64+32,2*64+32)
 			$Green.initial_direction = 1
 			level_name = "Snake"
+		12:
+			# This action tile is meant to be placed manually in code
+			# Do not remove
+			$ActionTile.set_cell(16,11,5,false,false,false,Vector2(0,0))
+			$DurMap.set_cell(16,11,5,false,false,false,Vector2(0,0))
+			$BackupDurMap.set_cell(16,11,5,false,false,false,Vector2(0,0))
+			$Green.position = Vector2(15*64+32,6*64+32)
+			$Red.position = Vector2(8*64+32,16*64+32)
+			$Red.initial_direction = 1
+			level_name = "Take Control"
 
 
 # Just gives the two characters different ID values to reference
