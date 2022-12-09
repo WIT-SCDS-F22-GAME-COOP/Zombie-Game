@@ -7,16 +7,15 @@ var level
 
 var points = 0
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	change_level(level_int)
 	OS.set_window_maximized(true)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if Input.is_action_just_pressed("f11"):
+		OS.window_fullscreen = !OS.window_fullscreen
 
 # Changes what level is started when start is pressed
 # x is an integer value that corresponds to a level number

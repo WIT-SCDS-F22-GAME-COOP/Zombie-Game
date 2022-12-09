@@ -14,7 +14,7 @@ extends Node
 
 
 # Change as levels are added
-var last_level = 10
+var last_level = 11
 
 var current_button = 0
 
@@ -65,7 +65,6 @@ func load_file(file):
 		else:
 			credits = credits + "\n" + line
 		line += " "
-		print(line + str(index))
 		index += 1
 	f.close()
 	return

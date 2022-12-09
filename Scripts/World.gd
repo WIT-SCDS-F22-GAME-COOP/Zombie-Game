@@ -136,7 +136,17 @@ func level_specific():
 			$TileMap.set_cell(16,1,8,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(16,2,6,false,false,false,Vector2(0,0))
 			level_name = "Multi Function Room"
-		8:
+		7:
+			$Red.position = Vector2(1*64+32,2*64+32)
+			$Green.position = Vector2(14*64+32,2*64+32)
+			$Red.initial_direction = 1
+			$Green.initial_direction = 3
+			$TileMap.set_cell(7,1,10,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(8,1,6,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(16,1,8,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(16,2,6,false,false,false,Vector2(0,0))
+			level_name = "Something Missing"
+		9:
 			$Red.position = Vector2(8*64+32,11*64+32)
 			$Green.position = Vector2(8*64+32,10*64+32)
 			$TileMap.set_cell(8,5,11,false,false,false,Vector2(0,0))
@@ -146,13 +156,13 @@ func level_specific():
 			$TileMap.set_cell(6,11,10,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(7,11,10,false,false,false,Vector2(0,0))
 			level_name = "One Way"
-		9:
+		11:
 			$Red.position = Vector2(1*64+32,1*64+32)
 			$Green.position = Vector2(16*64+32,16*64+32)
 			$Red.initial_direction = 2
 			$TileMap.set_cell(1,10,11,false,false,false,Vector2(0,0))
 			level_name = "A Difficult Task"
-		7:
+		8:
 			$Red.position = Vector2(2*64+32,8*64+32)
 			$Green.position = Vector2(1*64+32,8*64+32)
 			$TileMap.set_cell(11,10,6,false,false,false,Vector2(0,0))
