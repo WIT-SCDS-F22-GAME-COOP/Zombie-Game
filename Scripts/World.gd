@@ -26,13 +26,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# Debug info on cursor's current position.
-	# Can just be hidden for release.
+	# If a level is left unnamed, shows the tile coordinates of the cursor instead
+	# Useful for figuring out specific placements when implementing new levels
 	if level_name == "UNNAMED":
 		$Label.text = str($Cursor.tile_position)
 	
 	if current_button == 1 && Input.is_action_just_pressed("select"):
 		_on_Button_pressed()
+	if current_button == 2 && Input.is_action_just_pressed("select"):
+		_on_Button2_pressed()
 	
 	if Input.is_action_just_pressed("select"):
 		selection()
@@ -345,7 +347,17 @@ func _Back_Button_Entered(area):
 	current_button = 1
 func _Back_Button_Left(area):
 	current_button = 0
-
+func _on_Button2_pressed():
+	if $Red.frames == -1:
+		$Red.frames = 0
+		$Green.frames = 0
+	else:
+		$Green.reset()
+		$Red.reset()
+func _on_Area2D_area_entered(area):
+	current_button = 2
+func _on_Area2D_area_exited(area):
+	current_button = 0
 
 # If a character enters a wall
 # x = character frame count, y = fail state
@@ -398,7 +410,6 @@ func _input(event):
 		move_mouse(event)
 
 func move_mouse(event):
-	var z = event.position
 	var x = int(event.position.x)
 	var y = int(event.position.y)
 	x = int(x/64)
@@ -407,3 +418,6 @@ func move_mouse(event):
 
 func _on_Timer_timeout():
 	selection()
+
+
+
