@@ -5,7 +5,7 @@
 [ext_resource path="res://Graphics/placeholder_tiles.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/font/Boxy-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Graphics/placeholder_tiles2.png" type="Texture" id=5]
-[ext_resource path="res://Graphics/Leopard_Seal-Outline-Yellow_Fill-Light_Bkgd-_Large.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/pixel leopard logo.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 50.2, 25 )
@@ -283,7 +283,7 @@ margin_left = -1646.0
 margin_top = 1152.0
 margin_right = -1199.0
 margin_bottom = 1981.0
-rect_scale = Vector2( 3, 3 )
+rect_scale = Vector2( 2.5, 2.5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "credits show up here"
@@ -327,8 +327,8 @@ align = 2
 uppercase = true
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -288.25, 611.398 )
-scale = Vector2( 0.262695, 0.262695 )
+position = Vector2( -334.25, 564.979 )
+scale = Vector2( 0.322591, 0.322591 )
 texture = ExtResource( 6 )
 
 [node name="Label3" type="Label" parent="."]

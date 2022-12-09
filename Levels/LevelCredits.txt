@@ -5,7 +5,9 @@ Game Developed By
 Ryan Brown & Lucas De Caux
 Under Supervision of
 Professor Joshua Gyllinsky
-For WIT Fall Co-Op 2022
+      School of Computing 
+                     & Data Science
+For P.A.C. Lab Fall Co-Op 2022
 
 Levels Designed By
 Ryan Brown
