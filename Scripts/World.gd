@@ -354,6 +354,7 @@ func _on_Button2_pressed():
 	else:
 		$Green.reset()
 		$Red.reset()
+		durmap_restore()
 func _on_Area2D_area_entered(area):
 	current_button = 2
 func _on_Area2D_area_exited(area):
