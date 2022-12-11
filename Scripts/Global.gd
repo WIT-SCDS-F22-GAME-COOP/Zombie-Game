@@ -7,6 +7,8 @@ var level
 
 var points = 0
 
+var race = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	change_level(level_int)
@@ -30,5 +32,6 @@ func change_level(x):
 # Then actually returns to menu
 func return_menu():
 	menu = true
+	race = false
 	points = 0
 	get_tree().change_scene("res://TSCN/Menu.tscn")

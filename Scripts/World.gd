@@ -43,11 +43,22 @@ func _process(delta):
 	pass_tile()
 	
 	# The only time you have two points is when both characters have won.
+	# For the race gamemode, instead checks for win or loss depending on
+	# which character has won
 	# Continuously checked in case reset is pressed after winning.
-	if (Global.points >= 2):
+	if (Global.points >= 2 && Global.race == false):
 		$WinGraphic.visible = true
+	elif (Global.points == 1 && Global.race == true && $Red.position.x < 0 && $Green.position.x > 0):
+		$WinGraphic.visible = true
+		$Red.frames = -1
+		$Green.frames = -1
+	elif (Global.race == true && $Green.position.x < 0):
+		$RaceLossGraphic.visible = true
+		$Red.frames = -1
+		$Green.frames = -1
 	else:
 		$WinGraphic.visible = false
+		$RaceLossGraphic.visible = false
 	
 	# The purpose of this method should be obvious enough.
 	# Check if a character went into the wall, thus failing.
@@ -184,6 +195,11 @@ func level_specific():
 			$Red.position = Vector2(8*64+32,16*64+32)
 			$Red.initial_direction = 1
 			level_name = "Take Control"
+		13:
+			$Red.position = Vector2(6*64+32,16*64+32)
+			$Green.position = Vector2(7*64+32,16*64+32)
+			level_name = "race test"
+			Global.race = true
 
 
 # Just gives the two characters different ID values to reference
