@@ -199,6 +199,7 @@ func level_specific():
 			$ActionTile.set_cell(16,11,5,false,false,false,Vector2(0,0))
 			$DurMap.set_cell(16,11,5,false,false,false,Vector2(0,0))
 			$BackupDurMap.set_cell(16,11,5,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(18,11,4,false,false,false,Vector2(0,0))
 			$Green.position = Vector2(15*64+32,6*64+32)
 			$Red.position = Vector2(8*64+32,16*64+32)
 			$Red.initial_direction = 1
@@ -268,10 +269,10 @@ func pass_floor(a,b):
 # For placeable tiles, read the documentation in the levels folder
 func draw_map(x):
 	# Clean up the walls from tile generation
-	for index in (30):
-		for index2 in (30):
-			if $TileMap.get_cell(index2,index) == 0:
-				$TileMap.set_cell(index2,index,1,false,false,false,Vector2(0,0))
+	for index in (5):
+		for index2 in (5):
+			if $TileMap.get_cell(index2+20,index+6) == 0:
+				$TileMap.set_cell(index2+20,index+6,1,false,false,false,Vector2(0,0))
 	
 	var image = load(x)
 	var data = image.get_data()
@@ -317,14 +318,14 @@ func draw_tiles(x):
 # A separate method just so it can return and end the loop
 # If I wasn't so tired I'm sure I'd remember a better way
 func actually_draw_the_tile(tile):
-	for index in (30):
-		for index2 in (30):
+	for index in (29):
+		for index2 in (5):
 			# Places tiles on top of a wall
 			# These walls are removed by draw map, so don't leave any tiles with ID 0 elsewhere
-			if $TileMap.get_cell(index2,index) == 0 && $ActionTile.get_cell(index2,index) == -1:
-				$ActionTile.set_cell(index2,index,tile[0],false,false,false,Vector2(0,0))
+			if $TileMap.get_cell(index2+20,index+1) == 0 && $ActionTile.get_cell(index2+20,index+1) == -1:
+				$ActionTile.set_cell(index2+20,index+1,tile[0],false,false,false,Vector2(0,0))
 				var x = tile[1]
-				$DurMap.set_cell(index2,index,x,false,false,false,Vector2(0,0))
+				$DurMap.set_cell(index2+20,index+1,x,false,false,false,Vector2(0,0))
 				return
 
 # Backup map allows for restoring after reset
@@ -343,8 +344,8 @@ func durmap_restore():
 func draw_walls():
 	var random_generator = RandomNumberGenerator.new()
 	random_generator.randomize()
-	for index in (18):
-		for index2 in (18):
+	for index in (30):
+		for index2 in (30):
 			if $TileMap.get_cell(index,index2) == 0:
 				var x = random_generator.randi()%10+1
 				if x <= 7:
