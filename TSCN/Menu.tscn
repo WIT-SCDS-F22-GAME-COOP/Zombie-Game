@@ -250,9 +250,9 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 margin_left = 842.0
-margin_top = 162.0
+margin_top = 128.0
 margin_right = 918.0
-margin_bottom = 176.0
+margin_bottom = 142.0
 rect_scale = Vector2( 6, 6 )
 text = "Sample text"
 align = 1

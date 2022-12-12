@@ -41,6 +41,7 @@ func _ready():
 	$Button.set("custom_fonts/font", dynamic_font)
 	$Button2.set("custom_fonts/font", dynamic_font)
 	$Button3.set("custom_fonts/font", dynamic_font)
+	$Label.set("custom_fonts/font", dynamic_font)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
