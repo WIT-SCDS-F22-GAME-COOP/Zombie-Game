@@ -24,11 +24,23 @@ var credits = "DEFAULT"
 
 var menu_location = 0
 
+# Import font to project
+onready var path2font = "res://Graphics/font/Boxy-Bold.ttf"
+
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_file(file)
 	$Credits.text = credits
 
+	var dynamic_font = DynamicFont.new()
+	dynamic_font.font_data = load(path2font)
+	dynamic_font.size = 8
+	$Button.set("custom_fonts/font", dynamic_font)
+	$Button2.set("custom_fonts/font", dynamic_font)
+	$Button3.set("custom_fonts/font", dynamic_font)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
