@@ -208,8 +208,14 @@ func level_specific():
 			$Green.position = Vector2(12*64+32,1*64+32)
 			level_name = "race test"
 			Global.race = true
-
-
+		14:
+			$Red.position = Vector2(0*64+32,10*64+32)
+			$Green.position = Vector2(00*64+32,9*64+32)
+			level_name = "coop demo"
+			Global.race = true
+			$Red.initial_direction = 1
+			$Green.initial_direction = 1
+			
 # Just gives the two characters different ID values to reference
 # They use the exact same script so this makes differentiating them easier
 func assign_ids():
