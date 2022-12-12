@@ -392,7 +392,7 @@ func _Back_Button_Entered(area):
 func _Back_Button_Left(area):
 	current_button = 0
 func _on_Button2_pressed():
-	if $Red.frames == -1:
+	if $Red.frames == -1 && initial_pos_check():
 		$Red.frames = 0
 		$Green.frames = 0
 	else:
