@@ -9,6 +9,8 @@ var new_walls = false
 
 var level_name = "UNNAMED"
 
+# Import font to project
+onready var path2font = "res://Graphics/font/Boxy-Bold.ttf"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,7 +25,13 @@ func _ready():
 	else:
 		draw_walls()
 
-
+	var dynamic_font = DynamicFont.new()
+	dynamic_font.font_data = load(path2font)
+	dynamic_font.size = 8
+	$Button.set("custom_fonts/font", dynamic_font)
+	$Button2.set("custom_fonts/font", dynamic_font)
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# If a level is left unnamed, shows the tile coordinates of the cursor instead
