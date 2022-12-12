@@ -90,9 +90,20 @@ func tick():
 # Current facing direction. 0 Up, 1 right, 2 down, 3 left
 func walk(x):
 	# If statement checks if NOT on character's win spot.
-	if (current_floor[4] - 1 != id):
+	if (current_floor[4] - 1 != id && Global.race == false):
 		# Check if hitting a wall.
 		# If hits a wall, flip and go the opposite direction.
+		x = wall_check(x)
+		match(x):
+			0:
+				global_position.y = global_position.y - 64
+			1:
+				global_position.x = global_position.x + 64
+			2:
+				global_position.y = global_position.y + 64
+			3:
+				global_position.x = global_position.x - 64
+	elif (Global.race == true && current_floor[4] != 2):
 		x = wall_check(x)
 		match(x):
 			0:

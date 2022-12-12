@@ -196,8 +196,8 @@ func level_specific():
 			$Red.initial_direction = 1
 			level_name = "Take Control"
 		13:
-			$Red.position = Vector2(6*64+32,16*64+32)
-			$Green.position = Vector2(7*64+32,16*64+32)
+			$Red.position = Vector2(2*64+32,1*64+32)
+			$Green.position = Vector2(12*64+32,1*64+32)
 			level_name = "race test"
 			Global.race = true
 
