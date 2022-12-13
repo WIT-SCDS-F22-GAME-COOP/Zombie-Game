@@ -19,22 +19,22 @@ func _process(delta):
 # Moves the cursor
 # Currently hard coded to stay within window size
 func move():
-	if Input.is_action_pressed("move_right") && tile_position.x < 25:
+	if Input.is_action_pressed("move_right") && tile_position.x < 26:
 		if frames % 5 == 0:
 			global_position.x = global_position.x + 64
 			direction = 1
 		frames = frames + 1
-	elif Input.is_action_pressed("move_left") && tile_position.x > 1:
+	elif Input.is_action_pressed("move_left") && tile_position.x > 0:
 		if frames % 5 == 0:
 			global_position.x = global_position.x - 64
 			direction = 3
 		frames = frames + 1
-	elif Input.is_action_pressed("move_up") && tile_position.y > 1:
+	elif Input.is_action_pressed("move_up") && tile_position.y > 0:
 		if frames % 5 == 0:
 			global_position.y = global_position.y - 64
 			direction = 0
 		frames = frames + 1
-	elif Input.is_action_pressed("move_down") && tile_position.y < 16:
+	elif Input.is_action_pressed("move_down") && tile_position.y < 17:
 		if frames % 5 == 0:
 			global_position.y = global_position.y + 64
 			direction = 2
@@ -48,8 +48,8 @@ func move():
 		# and Wentworth loves to just reuse Razer laptops, which, by default, lock to 30 FPS
 		# if they come unplugged from the wall. This way, nothing breaks if that happens.
 	# It can definitely be fixed, but it functionally changes nothing.
-	if (Global.menu == false):
-		if (tile_position.x == 17):
-			global_position.x = global_position.x + 128
-		elif (tile_position.x == 18):
-			global_position.x = global_position.x - 128
+#	if (Global.menu == false):
+#		if (tile_position.x == 17):
+#			global_position.x = global_position.x + 128
+#		elif (tile_position.x == 18):
+#			global_position.x = global_position.x - 128
