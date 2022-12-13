@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Graphics/placeholder_tiles.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/World.gd" type="Script" id=2]
@@ -856,6 +856,10 @@ border_color = Color( 0.588235, 0.588235, 0.588235, 1 )
 12/shapes = [  ]
 12/z_index = 0
 
+[sub_resource type="DynamicFont" id=16]
+size = 24
+font_data = ExtResource( 16 )
+
 [node name="Node" type="Node"]
 script = ExtResource( 2 )
 
@@ -955,30 +959,19 @@ modulate = Color( 0.0470588, 0.662745, 0.490196, 1 )
 position = Vector2( -256, 0 )
 z_index = 2
 frames = SubResource( 8 )
+frame = 1
 playing = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 1218.0
-margin_top = 771.0
+margin_top = 770.0
 margin_right = 1662.0
-margin_bottom = 1019.0
+margin_bottom = 1018.0
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
 margin_right = 444.0
 margin_bottom = 248.0
 custom_styles/panel = SubResource( 9 )
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
-margin_right = 444.0
-margin_bottom = 248.0
-
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
-margin_right = 444.0
-margin_bottom = 248.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-autowrap = true
-clip_text = true
 
 [node name="WinGraphic" type="Sprite" parent="."]
 visible = false
@@ -1003,7 +996,6 @@ tile_set = SubResource( 11 )
 format = 1
 
 [node name="BackupDurMap" type="TileMap" parent="."]
-visible = false
 tile_set = SubResource( 12 )
 format = 1
 
@@ -1020,6 +1012,18 @@ one_shot = true
 visible = false
 position = Vector2( 597, 557 )
 texture = ExtResource( 17 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+margin_left = 1226.0
+margin_top = 779.0
+margin_right = 1653.0
+margin_bottom = 1009.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer2"]
+margin_right = 427.0
+margin_bottom = 230.0
+custom_fonts/normal_font = SubResource( 16 )
+text = "Select a tile to see info"
 
 [connection signal="dur_lower" from="Red" to="." method="_on_dur_lower_signal"]
 [connection signal="dur_lower" from="Green" to="." method="_on_dur_lower_signal"]

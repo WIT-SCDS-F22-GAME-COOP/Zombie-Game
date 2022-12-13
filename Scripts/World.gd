@@ -34,6 +34,7 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+		
 	# If a level is left unnamed, shows the tile coordinates of the cursor instead
 	# Useful for figuring out specific placements when implementing new levels
 	if level_name == "UNNAMED":
@@ -94,6 +95,7 @@ func selection():
 		selected_tile.x = $ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
 		selected_tile.y = $DurMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y)
 		$SelectedCursor.position = $Cursor.position
+		setText()
 	elif (selected_tile.x != -1 && $TileMap.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) == 1 && initial_pos_check()):
 		$ActionTile.set_cell($Cursor.tile_position.x, $Cursor.tile_position.y, selected_tile.x, false,false,false, Vector2(0,0))
 		$ActionTile.set_cell(selected_tile_pos.x, selected_tile_pos.y, -1, false,false,false, Vector2(0,0))
@@ -102,6 +104,7 @@ func selection():
 		selected_tile.x = -1
 		selected_tile.y = -1
 		durmap_backup()
+		$MarginContainer2/RichTextLabel.text = "Select a tile to see info"
 		$SelectedCursor.position = Vector2(-256,0)
 
 # Just checks if both characters are where they start.
@@ -471,5 +474,88 @@ func move_mouse(event):
 func _on_Timer_timeout():
 	selection()
 
+func setText():
+	var text = ""
+	var dur = $DurMap.get_cell(selected_tile_pos.x,selected_tile_pos.y)
+	if (dur == 1):
+		text = baseTile(false)
+	elif (dur == 5):
+		text += "while(true){\n   "
+		text += baseTile(true)
+		text += "\n}"
+	elif (dur > 1):
+		text += "int i = 0;\nwhile(i < "
+		text += String(dur)
+		text += "){\n   "
+		text += baseTile(true)
+		text += "\n   i++"
+		text += "\n}"
+	$MarginContainer2/RichTextLabel.text = text
+	
+	
 
-
+func baseTile(indented):
+	print(selected_tile.x)
+	match int(selected_tile.x):
+		0:
+			return "turnLeft();"
+		1:
+			return "turnRight();"
+		2:
+			return "moveUp();"
+		3:
+			return "moveDown();"
+		4:
+			return "moveLeft();"
+		5:
+			return "moveRight();"
+		6:
+			if indented:
+				return "if(species == zombie){\n      turnLeft();\n   }"
+			return "if(species == zombie){\n   turnLeft();\n}"
+		7:
+			if indented:
+				return "if(species == zombie){\n      turnRight();\n   }"
+			return "if(species == zombie){\n   turnRight();\n}"
+		8:
+			if indented:
+				return "if(species == zombie){\n      moveUp();\n   }"
+			return "if(species == zombie){\n   moveUp();\n}"
+		9:
+			if indented:
+				return "if(species == zombie){\n      moveDown();\n   }"
+			return "if(species == zombie){\n   moveDown();\n}"
+		10:
+			if indented:
+				return "if(species == zombie){\n      moveLeft();\n   }"
+			return "if(species == zombie){\n   moveLeft();\n}"
+		11:
+			if indented:
+				return "if(species == zombie){\n      moveRight();\n   }"
+			return "if(species == zombie){\n   moveRight();\n}"
+		12:
+			if indented:
+				return "if(species == human){\n      turnLeft();\n   }"
+			return "if(species == human){\n   turnLeft();\n}"
+		13:
+			if indented:
+				return "if(species == human){\n      turnRight();\n   }"
+			return "if(species == human){\n   turnRight();\n}"
+		14:
+			if indented:
+				return "if(species == human){\n      moveUp();\n   }"
+			return "if(species == human){\n   moveUp();\n}"
+		15:
+			if indented:
+				return "if(species == human){\n      moveDown();\n   }"
+			return "if(species == human){\n   moveDown();\n}"
+		16:
+			if indented:
+				return "if(species == human){\n      moveLeft();\n   }"
+			return "if(species == human){\n   moveLeft();\n}"
+		17:
+			if indented:
+				return "if(species == human){\n      moveRight();\n   }"
+			return "if(species == human){\n   moveRight();\n}"
+		_: 
+			return "ERROR"
