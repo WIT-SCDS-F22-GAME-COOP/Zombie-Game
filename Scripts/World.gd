@@ -490,13 +490,15 @@ func setText():
 	elif (dur == 5):
 		text += "while(true){\n   "
 		text += set_text_helper(true)
-		text += "\n}"
+		text += "   }\n"
+		text += "}"
 	elif (dur > 1):
 		text += "int i = 0;\nwhile(i < "
 		text += String(dur)
 		text += "){\n   "
 		text += set_text_helper(true)
-		text += "\n   i++;"
+		text += "   i++;\n"
+		text += "   }"
 		text += "\n}"
 	$MarginContainer2/RichTextLabel.text = text
 	
@@ -507,64 +509,64 @@ func set_text_helper(indented):
 	print(selected_tile.x)
 	match int(selected_tile.x):
 		0:
-			return "turnLeft();"
+			return "turnLeft();\n"
 		1:
-			return "turnRight();"
+			return "turnRight();\n"
 		2:
-			return "moveUp();"
+			return "moveUp();\n"
 		3:
-			return "moveDown();"
+			return "moveDown();\n"
 		4:
-			return "moveLeft();"
+			return "moveLeft();\n"
 		5:
-			return "moveRight();"
+			return "moveRight();\n"
 		6:
 			if indented:
-				return "if(species == zombie){\n      turnLeft();\n   }"
+				return "if(species == zombie){\n      turnLeft();\n   "
 			return "if(species == zombie){\n   turnLeft();\n}"
 		7:
 			if indented:
-				return "if(species == zombie){\n      turnRight();\n   }"
+				return "if(species == zombie){\n      turnRight();\n   "
 			return "if(species == zombie){\n   turnRight();\n}"
 		8:
 			if indented:
-				return "if(species == zombie){\n      moveUp();\n   }"
+				return "if(species == zombie){\n      moveUp();\n   "
 			return "if(species == zombie){\n   moveUp();\n}"
 		9:
 			if indented:
-				return "if(species == zombie){\n      moveDown();\n   }"
+				return "if(species == zombie){\n      moveDown();\n   "
 			return "if(species == zombie){\n   moveDown();\n}"
 		10:
 			if indented:
-				return "if(species == zombie){\n      moveLeft();\n   }"
+				return "if(species == zombie){\n      moveLeft();\n   "
 			return "if(species == zombie){\n   moveLeft();\n}"
 		11:
 			if indented:
-				return "if(species == zombie){\n      moveRight();\n   }"
+				return "if(species == zombie){\n      moveRight();\n   "
 			return "if(species == zombie){\n   moveRight();\n}"
 		12:
 			if indented:
-				return "if(species == human){\n      turnLeft();\n   }"
+				return "if(species == human){\n      turnLeft();\n   "
 			return "if(species == human){\n   turnLeft();\n}"
 		13:
 			if indented:
-				return "if(species == human){\n      turnRight();\n   }"
+				return "if(species == human){\n      turnRight();\n   "
 			return "if(species == human){\n   turnRight();\n}"
 		14:
 			if indented:
-				return "if(species == human){\n      moveUp();\n   }"
+				return "if(species == human){\n      moveUp();\n   "
 			return "if(species == human){\n   moveUp();\n}"
 		15:
 			if indented:
-				return "if(species == human){\n      moveDown();\n   }"
+				return "if(species == human){\n      moveDown();\n   "
 			return "if(species == human){\n   moveDown();\n}"
 		16:
 			if indented:
-				return "if(species == human){\n      moveLeft();\n   }"
+				return "if(species == human){\n      moveLeft();\n   "
 			return "if(species == human){\n   moveLeft();\n}"
 		17:
 			if indented:
-				return "if(species == human){\n      moveRight();\n   }"
+				return "if(species == human){\n      moveRight();\n   "
 			return "if(species == human){\n   moveRight();\n}"
 		_: 
 			return "ERROR"
