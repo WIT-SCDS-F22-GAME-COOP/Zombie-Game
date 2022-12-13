@@ -230,6 +230,7 @@ func level_specific():
 			$TileMap.set_cell(12,11,6,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(1,11,6,false,false,false,Vector2(0,0))
 			$TileMap.set_cell(12,12,9,false,false,false,Vector2(0,0))
+			level_name = "Time Stall"
 			
 # Just gives the two characters different ID values to reference
 # They use the exact same script so this makes differentiating them easier
