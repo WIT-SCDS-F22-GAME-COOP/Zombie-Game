@@ -996,6 +996,7 @@ tile_set = SubResource( 11 )
 format = 1
 
 [node name="BackupDurMap" type="TileMap" parent="."]
+visible = false
 tile_set = SubResource( 12 )
 format = 1
 

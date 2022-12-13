@@ -219,6 +219,17 @@ func level_specific():
 			Global.race = true
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
+		15:
+			$Red.position = Vector2(15*64+32,9*64+32)
+			$Green.position = Vector2(2*64+32,3*64+32)
+			$TileMap.set_cell(2,6,6,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(3,6,9,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(4,6,9,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(15,2,5,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(12,2,5,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(12,11,6,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(1,11,6,false,false,false,Vector2(0,0))
+			$TileMap.set_cell(12,12,9,false,false,false,Vector2(0,0))
 			
 # Just gives the two characters different ID values to reference
 # They use the exact same script so this makes differentiating them easier
@@ -478,23 +489,23 @@ func setText():
 	var text = ""
 	var dur = $DurMap.get_cell(selected_tile_pos.x,selected_tile_pos.y)
 	if (dur == 1):
-		text = baseTile(false)
+		text = set_text_helper(false)
 	elif (dur == 5):
 		text += "while(true){\n   "
-		text += baseTile(true)
+		text += set_text_helper(true)
 		text += "\n}"
 	elif (dur > 1):
 		text += "int i = 0;\nwhile(i < "
 		text += String(dur)
 		text += "){\n   "
-		text += baseTile(true)
-		text += "\n   i++"
+		text += set_text_helper(true)
+		text += "\n   i++;"
 		text += "\n}"
 	$MarginContainer2/RichTextLabel.text = text
 	
 	
 
-func baseTile(indented):
+func set_text_helper(indented):
 	print(selected_tile.x)
 	match int(selected_tile.x):
 		0:
