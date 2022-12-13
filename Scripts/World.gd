@@ -86,8 +86,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("reset_level"):
 		durmap_restore()
 
-# Direct all questions on this function to Lucas De Caux.
-# I'm not super familiar with it.
+#Sets the Selected tile variable to whatever tile you select
+#if you have a tile selected, choosing an empty square will move your selected tile there
 func selection():
 	$LossGraphic.visible = false
 	if ($ActionTile.get_cell($Cursor.tile_position.x, $Cursor.tile_position.y) != -1 && initial_pos_check()):
@@ -485,7 +485,8 @@ func move_mouse(event):
 
 func _on_Timer_timeout():
 	selection()
-
+	
+#sets the text for the text box to explain selected tile
 func setText():
 	var text = ""
 	var dur = $DurMap.get_cell(selected_tile_pos.x,selected_tile_pos.y)
@@ -505,7 +506,8 @@ func setText():
 	$MarginContainer2/RichTextLabel.text = text
 	
 	
-
+#Helper function for setText
+#This is kinda gross but I couldnt think of a better way to do it with accurate spacing
 func set_text_helper(indented):
 	print(selected_tile.x)
 	match int(selected_tile.x):
