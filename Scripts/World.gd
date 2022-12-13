@@ -208,18 +208,13 @@ func level_specific():
 			$Red.initial_direction = 1
 			level_name = "Take Control"
 		13:
-			$Red.position = Vector2(2*64+32,1*64+32)
-			$Green.position = Vector2(12*64+32,1*64+32)
-			level_name = "race test"
-			Global.race = true
-		14:
 			$Red.position = Vector2(0*64+32,10*64+32)
 			$Green.position = Vector2(00*64+32,9*64+32)
 			level_name = "coop demo"
 			Global.race = true
 			$Red.initial_direction = 1
 			$Green.initial_direction = 1
-		15:
+		14:
 			$Red.position = Vector2(15*64+32,9*64+32)
 			$Green.position = Vector2(2*64+32,3*64+32)
 			$TileMap.set_cell(2,6,6,false,false,false,Vector2(0,0))
